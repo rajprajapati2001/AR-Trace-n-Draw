@@ -1,0 +1,10 @@
+{
+  "name": "AR Trace & Draw - Camera Sketch Studio",
+  "description": "Trace, sketch, and draw in augmented reality using your device camera. Import or choose sketches, adjust transparency, rotate, flip, and lock overlay.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
