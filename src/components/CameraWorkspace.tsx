@@ -61,6 +61,8 @@ export const CameraWorkspace: React.FC<CameraWorkspaceProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayImgRef = useRef<HTMLImageElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const cameraRequestRef = useRef(0);
 
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [cameraStatus, setCameraStatus] = useState<'requesting' | 'active' | 'denied' | 'unsupported'>('requesting');
@@ -103,12 +105,17 @@ export const CameraWorkspace: React.FC<CameraWorkspaceProps> = ({
   };
 
   const startCamera = useCallback(async (facing: 'environment' | 'user') => {
+    const requestId = ++cameraRequestRef.current;
     setCameraStatus('requesting');
     setErrorMessage('');
 
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current = null;
       setStream(null);
+    }
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
     }
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -128,11 +135,18 @@ export const CameraWorkspace: React.FC<CameraWorkspaceProps> = ({
       };
 
       const newStream = await navigator.mediaDevices.getUserMedia(constraints);
+      if (requestId !== cameraRequestRef.current) {
+        newStream.getTracks().forEach((track) => track.stop());
+        return;
+      }
+
+      streamRef.current = newStream;
       setStream(newStream);
       setCameraStatus('active');
 
       if (videoRef.current) {
         videoRef.current.srcObject = newStream;
+        await videoRef.current.play().catch(() => undefined);
       }
 
       const track = newStream.getVideoTracks()[0];
@@ -141,6 +155,7 @@ export const CameraWorkspace: React.FC<CameraWorkspaceProps> = ({
         setHasTorch(!!capabilities.torch);
       }
     } catch (err: any) {
+      if (requestId !== cameraRequestRef.current) return;
       console.warn('getUserMedia error:', err);
       setCameraStatus('denied');
       if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
@@ -151,18 +166,23 @@ export const CameraWorkspace: React.FC<CameraWorkspaceProps> = ({
         setErrorMessage(err.message || 'Unable to start camera.');
       }
     }
-  }, [setHasTorch, stream]);
+  }, [setHasTorch]);
 
   useEffect(() => {
     if (traceSurface === 'camera') {
       startCamera(cameraFacing);
     }
     return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
+      cameraRequestRef.current += 1;
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
       }
     };
-  }, [cameraFacing, traceSurface]);
+  }, [cameraFacing, traceSurface, startCamera]);
 
   useEffect(() => {
     if (!stream) return;

@@ -167,6 +167,7 @@ export const ControlHUD: React.FC<ControlHUDProps> = ({
           aria-label={isLocked ? 'Unlock overlay' : 'Lock overlay'}
         >
           {isLocked ? <Lock className="w-4 h-4 shrink-0" /> : <Unlock className="w-4 h-4 text-slate-400 shrink-0" />}
+          <span className="font-semibold whitespace-nowrap hidden md:block">{isLocked ? 'Locked' : 'Lock'}</span>
         </button>
 
         {/* 2. Quick Opacity Trigger Button */}
@@ -240,7 +241,7 @@ export const ControlHUD: React.FC<ControlHUDProps> = ({
         {/* 7. Snapshot Photo */}
         <button
           onClick={onCaptureSnapshot}
-          className="p-2 bg-slate-800 hover:bg-slate-700 text-emerald-400 rounded-xl transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center border border-slate-700 shrink-0"
+          className="hidden md:block p-2 bg-slate-800 hover:bg-slate-700 text-emerald-400 rounded-xl transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center border border-slate-700 shrink-0"
           title="Capture Photo of Your Drawing"
           aria-label="Capture Snapshot"
         >

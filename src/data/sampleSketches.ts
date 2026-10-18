@@ -1,4 +1,8 @@
 import { SketchItem } from '../types';
+import animeHeroImage from '../assets/images/sketch_anime_hero_1792307285646.jpg';
+import wildTigerImage from '../assets/images/sketch_wild_tiger_1792307286239.jpg';
+import mandalaImage from '../assets/images/sketch_mandala_art_1792307287082.jpg';
+import cuteCatImage from '../assets/images/sketch_cute_cat_1792307287329.jpg';
 
 // Embedded SVG line-arts for instant lightweight templates
 const SVG_ROSE = `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -57,7 +61,7 @@ export const SAMPLE_SKETCHES: SketchItem[] = [
     id: 'anime-boy',
     title: 'Anime Hero Shonen',
     category: 'Anime',
-    imageUrl: '/src/assets/images/sketch_anime_hero_1792307285646.jpg',
+    imageUrl: animeHeroImage,
     difficulty: 'Medium',
     tags: ['Manga', 'Portrait', 'Hair', 'Eyes'],
   },
@@ -65,7 +69,7 @@ export const SAMPLE_SKETCHES: SketchItem[] = [
     id: 'wild-tiger',
     title: 'Royal Bengal Tiger',
     category: 'Animals',
-    imageUrl: '/src/assets/images/sketch_wild_tiger_1792307286239.jpg',
+    imageUrl: wildTigerImage,
     difficulty: 'Detailed',
     tags: ['Wildlife', 'Predator', 'Tattoo', 'Stripes'],
   },
@@ -73,7 +77,7 @@ export const SAMPLE_SKETCHES: SketchItem[] = [
     id: 'sacred-mandala',
     title: 'Sacred Floral Mandala',
     category: 'Mandala',
-    imageUrl: '/src/assets/images/sketch_mandala_art_1792307287082.jpg',
+    imageUrl: mandalaImage,
     difficulty: 'Detailed',
     tags: ['Geometry', 'Zen', 'Meditation', 'Pattern'],
   },
@@ -81,7 +85,7 @@ export const SAMPLE_SKETCHES: SketchItem[] = [
     id: 'cute-kitten',
     title: 'Playful Kitten',
     category: 'Cartoons',
-    imageUrl: '/src/assets/images/sketch_cute_cat_1792307287329.jpg',
+    imageUrl: cuteCatImage,
     difficulty: 'Easy',
     tags: ['Cute', 'Cat', 'Beginner', 'Kids'],
   },

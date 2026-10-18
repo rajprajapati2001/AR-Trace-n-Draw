@@ -1,4 +1,8 @@
 import React from 'react';
+import guideStep1Image from '../assets/images/guide_step1_cup_1792308903914.jpg';
+import guideStep2Image from '../assets/images/guide_step2_paper_1792308904425.jpg';
+import guideStep3Image from '../assets/images/guide_step3_adjust_1792308905612.jpg';
+import guideStep4Image from '../assets/images/guide_step4_trace_1792308906052.jpg';
 import { X } from 'lucide-react';
 
 interface SetupGuideModalProps {
@@ -11,25 +15,25 @@ const STEPS = [
     step: 1,
     title: 'Elevate Phone Over Paper',
     description: 'Place your phone horizontally on top of a clear glass cup, coffee mug, or phone stand. Position the rear camera lens pointing downward toward the desk.',
-    bgImage: '/src/assets/images/guide_step1_cup_1792308903914.jpg',
+    bgImage: guideStep1Image,
   },
   {
     step: 2,
     title: 'Position Paper Underneath',
     description: 'Place a sheet of blank sketching paper flat on the desk directly under the camera lens. Use the alignment grid to square up your paper.',
-    bgImage: '/src/assets/images/guide_step2_paper_1792308904425.jpg',
+    bgImage: guideStep2Image,
   },
   {
     step: 3,
     title: 'Adjust Transparency & Size',
     description: 'Slide the transparency to around 50% so you can clearly see both your pencil and the sketch lines at the same time.',
-    bgImage: '/src/assets/images/guide_step3_adjust_1792308905612.jpg',
+    bgImage: guideStep3Image,
   },
   {
     step: 4,
     title: 'Lock Overlay & Trace',
     description: 'Tap the Lock button to freeze the overlay in place. Now look through the phone screen and guide your pencil on the real paper below!',
-    bgImage: '/src/assets/images/guide_step4_trace_1792308906052.jpg',
+    bgImage: guideStep4Image,
   },
 ];
 

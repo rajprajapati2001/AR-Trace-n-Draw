@@ -19,7 +19,10 @@
 
 🌐Live Demo: [https://ar-trace-n-draw.vercel.app/](https://ar-trace-n-draw.vercel.app/)
 
-## Screenshots
+## 🏞️ Screenshot
+
+
+![screenshot-design.png](public/screenshot-design.png)
 
 
 ## 📂 System Project Structure
